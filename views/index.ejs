@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <title>Great Number Game</title>
+        <meta description='Great Number Game assignment for Coding Dojo'>
+        <meta charset='utf-8'>
+    </head>
+    <body>
+        <div id='wrapper'>
+            <h3>Welcome to The Great Number Game</h3>
+            <h4>I am thinking of a number between 1 and 100</h4>
+            <h4>Take a guess!</h4>
+            <br> 
+            <form id='guessform' action='/guess' method='POST'>
+                <input type='number' id='guess' name='guess' autofocus>
+                <input type='submit' id='submit' value='submit'>
+            </form>
+            <% if(context.status == 'high'){ %>
+                <div id="results" style='color: white; background-color: red; display: block'>
+                    <div id="resultsoutput">
+                        <h4>You're too <%=context.status%></h4>
+                    </div>
+                </div>
+            <% } else if(context.status == 'none'){ %>
+                <div id="results" style='display: none'>
+                    <div id="resultsoutput">
+                        <h4>You weren't supposed to see this. Status: <%=context.status%></h4>
+                    </div>
+                </div>
+            <% } else if(context.status == 'win'){ %>
+                <div id="results" style='color: black; background-color: green; display: block'>
+                    <div id="resultsoutput">
+                        <h4>You <%=context.status%>!</h4>
+                        <form id='resetform' action='/reset' method='POST'>
+                            <input type='submit' name='reset' id='reset' value='Play Again'>
+                        </form>
+                    </div>
+                </div>
+            <% } else if(context.status == 'low'){ %>
+                <div id="results" style='color: white; background-color: red; display: block'>
+                    <div id="resultsoutput">
+                        <h4>You're too <%=context.status%></h4>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </body>
+</html>
